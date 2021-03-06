@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head></h:head>
+
+	<h:body>
+		<h:form id="calculadora_form" header="Calculadora">			
+			<h2><p align="center">Calculadora Estadística</p></h2>
+			<h4> <p align="center">Crhystian Molano y Cristian Ruiz</p></h4>
+			<h3>Datos de la muestra (separados por ,)</h3>
+
+			<p:inputText id="datos" placeholder="Ingrese los valores" value="#{calculadoraBean.datos}" />
+			
+			<p:panelGrid columns="4">
+				<p:outputLabel value="Promedio #{calculadoraBean.promedio}"/>
+				<p:outputLabel value="DesviacionEstandar #{calculadoraBean.desviacionEstandar}" />
+				<p:outputLabel value="Varianza #{calculadoraBean.varianza}" />
+				<p:outputLabel value="Moda #{calculadoraBean.moda}"  />
+			</p:panelGrid>
+
+			<p:dataTable var="Historial" value="#{calculadoraBean.datosTable}"> 
+				<p:column>
+					<f:facet name="header"> 
+						<h:outputText value="Historial" />
+					</f:facet>
+					<h:outputText value="#{calculadoraBean.datosTable}" /> 
+				</p:column>
+			</p:dataTable>
+
+			<p:panelGrid columns="2">
+			<p:commandButton update="calculadora_form" actionListener="#{calculadoraBean.calculateValues(calculadoraBean.datos)}" value="Calculo de valores"/>
+			<p:commandButton update="calculadora_form" actionListener="#{calculadoraBean.restart()}" value="Restart"/>
+		</p:panelGrid>	
+		</h:form>
+	</h:body>
+
+</html>
